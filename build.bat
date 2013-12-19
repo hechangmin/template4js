@@ -1,0 +1,1 @@
+ant compressJS addJsmapInfo fixJsMap change2release > build.log

@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=100">
+</head>
+<body onload="App.main();">
+    <div id="content"></div>
+<script type="text/javascript" src="js/lib/jstpl.min.js?v=201312191703"></script>
+<script type="text/javascript" src="js/demo/index.js"></script>
+
+<script type="text/html" id="tpl">
+<ul>
+    <% for (var i = 0, l = list.length; i < l; i ++) { %>
+        <li><%=list[i].index%>. 用户: <%=list[i].user%>； 网站：<%=list[i].site%></li>
+    <% } %>
+</ul>
+</script>
+</body>
+</html>
