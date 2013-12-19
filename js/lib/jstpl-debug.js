@@ -22,7 +22,7 @@
     var jstpl = function(options) {
         if (undefined !== options) {
             if('string' === typeof options){
-                return template.apply(this, arguments);
+                return jstpl.template.apply(this, arguments);
             }
             for (var option in options) {
                 config[option] = options[option];
@@ -42,7 +42,13 @@
         global.jstpl = jstpl;
     }
 
-    var template = jstpl.template = function(str, data){
+    /**
+     * @description template
+     * @param {string} 元素ID 或 模板内容
+     * @param {json} data 模板数据 若空，则返回模板函数
+     * @return 模板解析结果
+     */
+    jstpl.template = function(str, data){
         var isDomId = !/[^a-zA-Z10-9_-]/.test(str), element, fn, tpl;
 
         if(isDomId){                    // 是元素id的格式
@@ -52,7 +58,7 @@
                 }else{
                     element = document.getElementById(str);
                     tpl = element.value || element.innerHTML;
-                    fn = cache[str] = template(tpl)
+                    fn = cache[str] = arguments.callee(tpl)
                 }
             }else{
                 throw 'param error : [non browser, nonsupport element id]';
