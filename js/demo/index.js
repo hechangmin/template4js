@@ -7,8 +7,11 @@ var App ={
 
     initPage : function(){
         var list = App.getData();
+
         var html = jstpl('tpl',list);
+
         var dom = document.getElementById('content');
+
         dom.innerHTML = html;
     },
 

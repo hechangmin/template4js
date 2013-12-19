@@ -43,7 +43,7 @@
     }
 
     var template = jstpl.template = function(str, data){
-        var isDomId = !/\s/.test(str), element, fn, tpl;
+        var isDomId = !/[^a-zA-Z10-9_-]/.test(str), element, fn, tpl;
 
         if(isDomId){                    // 是元素id的格式
             if(global.document){        // 是浏览器环境
