@@ -9,7 +9,7 @@
 
 ;(function(global, undefined){
 
-    var config = {openTag : '<%', closeTag : '%>', encode : true},
+    var config = {openTag : '<%', closeTag : '%>', escape : true},
         cache = {};
 
     /**
@@ -17,7 +17,7 @@
      * @constructor
      * @class  jstpl 模板引擎
      * @param  {json} options 配置开始标签，关闭标签,如果第一个参数不是对象，则自动转调 template
-     * @example jstpl({openTag : '<%', closeTag : '%>'});
+     * @example jstpl({openTag : '<%', closeTag : '%>', escape : true});
      */
     var jstpl = function(options) {
         if (undefined !== options) {
@@ -74,7 +74,6 @@
     var compile = function(str){
         //避免with语法
         var strFn = "var _$jstpl='',__fn__=(function(__d__){var __v__='';for(var __k__ in __d__){__v__+=('var '+__k__+'=__d__[\"'+__k__+'\"];');};eval(__v__);_$jstpl+='" + parse(str) + "';__v__=null;})(param);__fn__ = null;return _$jstpl;";
-        alert(strFn);
         return new Function("param", strFn);
     };
 
@@ -105,7 +104,7 @@
     var parse = function(str){
         var openTag = encodeReg(config['openTag']),
             closeTag = encodeReg(config['closeTag']),
-            encode = config['encode'];
+            escape = config['escape'];
 
         //移除注释及换行，避免干扰正常解析
         str = String(str).replace(new RegExp("(" + openTag + "[^" + closeTag + "]*)//.*\n","g"), "$1")
@@ -123,7 +122,7 @@
                 s = s.substr(1);
 
                 //是否转义
-                if(encode){
+                if(escape){
                     s = 'jstpl.avoidXSS(' + s + ')';
                 }
 
