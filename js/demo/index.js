@@ -33,7 +33,7 @@ var App ={
         data = {list : [{
             index : 1,
             user : 'baidu',
-            site : 'http://www.baidu.com'
+            site : '<a href="http://www.baidu.com" target="_blank">http://www.baidu.com</a>'
         },{
             index : 2,
             user : 'qq',

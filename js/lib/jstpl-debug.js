@@ -9,7 +9,7 @@
 
 ;(function(global, undefined){
 
-    var config = {openTag : '<%', closeTag : '%>'},
+    var config = {openTag : '<%', closeTag : '%>', encode : true},
         cache = {};
 
     /**
@@ -73,7 +73,8 @@
     //模板编译成函数
     var compile = function(str){
         //避免with语法
-        var strFn = "var _$_$_$_='',__fn__=(function(__d__){var __v__='';for(var __k__ in __d__){__v__+=('var '+__k__+'=__d__[\"'+__k__+'\"];');};eval(__v__);_$_$_$_+='" + parse(str) + "';__v__=null;})(param);__fn__ = null;return _$_$_$_;";
+        var strFn = "var _$jstpl='',__fn__=(function(__d__){var __v__='';for(var __k__ in __d__){__v__+=('var '+__k__+'=__d__[\"'+__k__+'\"];');};eval(__v__);_$jstpl+='" + parse(str) + "';__v__=null;})(param);__fn__ = null;return _$jstpl;";
+        alert(strFn);
         return new Function("param", strFn);
     };
 
@@ -82,10 +83,29 @@
         return String(source).replace(/([.*+?^=!:${}()|[\]/\\])/g,'\\$1');
     };
 
+    /**
+     * @description avoidXSS
+     * @param {string} 待处理字符串
+     * @return 转义后的字符串
+     */
+    jstpl.avoidXSS = function(strParam) {
+        var m = {
+            "<": "&#60;",
+            ">": "&#62;",
+            '"': "&#34;",
+            "'": "&#39;",
+            "&": "&#38;"
+        };
+        return String(strParam).replace(/[&<>"']/g, function (s) {
+            return m[s];
+        });
+    };
+
     //模板解析
     var parse = function(str){
         var openTag = encodeReg(config['openTag']),
-            closeTag = encodeReg(config['closeTag']);
+            closeTag = encodeReg(config['closeTag']),
+            encode = config['encode'];
 
         //移除注释及换行，避免干扰正常解析
         str = String(str).replace(new RegExp("(" + openTag + "[^" + closeTag + "]*)//.*\n","g"), "$1")
@@ -93,7 +113,24 @@
             .replace(new RegExp("[\\r\\t\\n]","g"), "");
 
         return str.replace(new RegExp( openTag + '(.*?)' + closeTag, 'g'), function($, $1){
-            return "';" + ($1.indexOf('=') == 0 ? "_$_$_$_+" + $1 + ";" : $1 )+ "_$_$_$_ += '";
+
+            var s = $1,
+                bFlag = false;
+
+            if($1.indexOf('=') == 0){
+
+                bFlag = true;
+                s = s.substr(1);
+
+                //是否转义
+                if(encode){
+                    s = 'jstpl.avoidXSS(' + s + ')';
+                }
+
+                s =  '_$jstpl+=' + s + ";";
+            }
+
+            return "';" + s + "_$jstpl += '";
         });
     };
 
