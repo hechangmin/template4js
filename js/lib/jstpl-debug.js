@@ -113,19 +113,11 @@
 
         return str.replace(new RegExp( openTag + '(.*?)' + closeTag, 'g'), function($, $1){
 
-            var s = $1,
-                bFlag = false;
+            var s = $1;
 
             if($1.indexOf('=') == 0){
-
-                bFlag = true;
                 s = s.substr(1);
-
-                //是否转义
-                if(escape){
-                    s = 'jstpl.avoidXSS(' + s + ')';
-                }
-
+                s = escape ? 'jstpl.avoidXSS(' + s + ')' : s;
                 s =  '_$jstpl+=' + s + ";";
             }
 
