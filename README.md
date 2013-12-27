@@ -28,7 +28,7 @@ jstpl？ 这是一个性能高、使用简单、配置灵活的 javascript模板
 
 * 提供简单的配置接口，允许配置 openTag、closeTag、escape（是否转义） 。
 
-  eg.  >jstpl({openTag : '<%', closeTag : '%>', escape : true});
+> eg.  jstpl({openTag : '<%', closeTag : '%>', escape : true});
 
 =================
 如果有使用上的疑问，请参照demo.html。
