@@ -1,7 +1,7 @@
 **jstpl？ 这是一个性能高、使用简单、配置灵活的 javascript模板引擎！**
 --------------
 
-高性能
+-高性能-
 --------------
 
 * 字符串+= 方式拼接
@@ -13,19 +13,20 @@
 * 采用了缓存策略
 >如果传入的参数是模板的ID，则该引擎会缓存模板，对于重复使用的情况下，大大提高了性能。
 
-**使用简单**
+-使用简单-
 --------------
 
 * 语法是Javascript原生语法。对于Javascript编程者来说，不存在使用门槛。
 
-**配置灵活**
+-配置灵活-
 --------------
 
 * 提供简单的配置接口，允许配置 openTag、closeTag、escape（是否转义） 。
 
-> eg.  jstpl({openTag : '<%', closeTag : '%>', escape : true});
+  > eg. jstpl({openTag : '<%', closeTag : '%>', escape : true});
 
-=================
+--------------
+
 如果有使用上的疑问，请参照demo.html。
 
 > 欢迎联系我 [hechangmin@gmail.com](mailto://hechangmin@gmail.com)
