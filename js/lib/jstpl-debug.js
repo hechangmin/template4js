@@ -70,6 +70,31 @@
         return data ? fn( data ) : fn;
     };
 
+    /**
+     * 添加模板辅助方法
+     * @name    template.helper
+     * @param   {String}    名称
+     * @param   {Function}  方法
+     */
+    jstpl.addHelper = function (name, helper) {
+        jstpl.helper[name] = helper;
+    };
+
+    jstpl.helper = {
+        escape : function(strParam){
+            var m = {
+                "<": "&#60;",
+                ">": "&#62;",
+                '"': "&#34;",
+                "'": "&#39;",
+                "&": "&#38;"
+            };
+            return String(strParam).replace(/[&<>"']/g, function (s) {
+                return m[s];
+            });
+        }
+    };
+
     //模板编译成函数
     var compile = function(str){
         //避免with语法
@@ -80,24 +105,6 @@
     //转义影响正则的字符
     var encodeReg = function (source) {
         return String(source).replace(/([.*+?^=!:${}()|[\]/\\])/g,'\\$1');
-    };
-
-    /**
-     * @description avoidXSS
-     * @param {string} 待处理字符串
-     * @return 转义后的字符串
-     */
-    jstpl.avoidXSS = function(strParam) {
-        var m = {
-            "<": "&#60;",
-            ">": "&#62;",
-            '"': "&#34;",
-            "'": "&#39;",
-            "&": "&#38;"
-        };
-        return String(strParam).replace(/[&<>"']/g, function (s) {
-            return m[s];
-        });
     };
 
     //模板解析
@@ -117,7 +124,7 @@
 
             if($1.indexOf('=') == 0){
                 s = s.substr(1);
-                s = escape ? 'jstpl.avoidXSS(' + s + ')' : s;
+                s = escape ? 'jstpl.helper.escape(' + s + ')' : s;
                 s =  '_$jstpl+=' + s + ";";
             }
 
