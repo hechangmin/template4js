@@ -14,7 +14,7 @@ var data = {list : [{
     site : "http://www.taobao.com"
 }]};
 
-var template = require('./lib/template.min.js').init;
+var template = require('./lib/template.js').init;
 
 var server = http.createServer(function(req, res){
     var contentType = 'text/html;charset=utf-8';
