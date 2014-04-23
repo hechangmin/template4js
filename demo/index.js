@@ -6,23 +6,18 @@ var App ={
     },
 
     initPage : function(){
-        var list = App.getData(),
-            dom = document.getElementById('content'),
+        var data = App.getData(),
             html,
             fn;
 
         // (1) 传入的是元素ID
-        // html = jstpl('tpl',list);
+        html = jstpl('tpl',data);
 
         // (2) ID 和 数据 分开传
-        fn = jstpl('tpl');
-        html = fn(list);
+        // fn = jstpl('tpl');
+        // html = fn(data);
 
-        // (3) 传入的不是模板ID 而是模板内容
-        //fn = jstpl('<ul><% for (var i = 0, l = list.length; i < l; i ++) { %><li><%=list[i].index%>. 用户: <%=list[i].user%>； 网站：<%=list[i].site%></li><% } %></ul>');
-        //html = fn(list);
-
-        dom.innerHTML = html;
+        document.getElementById('content').innerHTML = html;
     },
 
     initEvent : function(){
