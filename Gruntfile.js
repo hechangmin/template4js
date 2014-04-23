@@ -9,8 +9,8 @@ module.exports = function(grunt) {
                 }
             },
             build: {
-                src: 'lib/jstpl.debug.js',
-                dest: 'lib/jstpl.min.js'
+                src: 'lib/template.debug.js',
+                dest: 'lib/template.min.js'
             }
         }
     });

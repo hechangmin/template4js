@@ -14,13 +14,13 @@ var data = {list : [{
     site : "http://www.taobao.com"
 }]};
 
-var jstpl = require('./lib/jstpl.min.js').init;
+var template = require('./lib/template.min.js').init;
 
 var server = http.createServer(function(req, res){
     var contentType = 'text/html;charset=utf-8';
     res.setHeader("Content-Type", contentType);
 
-    var html = jstpl('./demo/demo.tpl', data);
+    var html = template('./demo/demo.tpl', data);
 
     res.end(html);
 

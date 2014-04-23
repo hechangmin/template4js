@@ -11,10 +11,10 @@ var App ={
             fn;
 
         // (1) 传入的是元素ID
-        html = jstpl('tpl',data);
+        html = template('tpl',data);
 
         // (2) ID 和 数据 分开传
-        // fn = jstpl('tpl');
+        // fn = template('tpl');
         // html = fn(data);
 
         document.getElementById('content').innerHTML = html;
