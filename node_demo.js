@@ -22,8 +22,6 @@ var server = http.createServer(function(req, res){
 
     var html = template('./demo/demo.tpl', data);
 
-    console.log(html);
-
     res.end(html);
 
 }).listen(8899);
