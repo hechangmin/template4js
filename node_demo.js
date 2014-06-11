@@ -2,7 +2,7 @@ var http = require('http');
 
 var data = {list : [{
     index : 1,
-    user : 'baidu',
+    user : 'baidu\'',
     site : '<a href="http://www.baidu.com" target="_blank">http://www.baidu.com</a>'
 },{
     index : 2,
@@ -21,6 +21,8 @@ var server = http.createServer(function(req, res){
     res.setHeader("Content-Type", contentType);
 
     var html = template('./demo/demo.tpl', data);
+
+    console.log(html);
 
     res.end(html);
 
