@@ -1,6 +1,6 @@
 {
   "name": "template4js",
-  "version": "2.2.4",
+  "version": "2.2.5",
   "description": "javascript template, support node and browser",
   "homepage": "http://github.com/hechangmin/template4js",
   "main": "./lib/template",
@@ -17,7 +17,5 @@
     "url": "git://github.com/hechangmin/template4js.git"
   },
   "dependencies": {},
-  "devDependencies": {},
-  "readme": "***template4js 是什么？***\r\n--------------\r\n\r\n*这是一个性能高、使用简单、配置灵活的 javascript模板引擎!*\r\n\r\n----------------------------------------------------------------------\r\n\r\n高性能\r\n--------------\r\n\r\n* 字符串+= 方式拼接\r\n\r\n>大多数的模板引擎在构建过程中都选择了数组的push及join来完成字符串拼接，实际上这种处理仅在IE 6、7的环境下会有优势。后来的现代浏览器及V8脚本引擎都对字符串本身的 ‘+=’做了优化。而如今IE 6、7市场份额日渐变小，用+= 来拼接字符串的性价比已经超越了数组。\r\n\r\n* 避免了with的语法\r\n\r\n>还有不少模板引擎使用with语法，这使得一切变得简单，但经测试 with在执行过程中，是低效的。\r\n\r\n这也是 template4js 的性能高的一个原因。\r\n\r\n\r\n使用简单\r\n--------------\r\n\r\n* 语法是Javascript原生语法。对于Javascript编程者来说，不存在使用门槛。\r\n\r\n浏览器端使用范例，请参考:browser_demo.html\r\n\r\nnodejs服务端使用范例，请参考：node_demo.js\r\n\r\n-------------------------------------------------------------------------\r\n\r\n>如果有使用上的疑问，请参照demo.html。\r\n\r\n_*欢迎联系我 [hechangmin@gmail.com](mailto://hechangmin@gmail.com)*_\r\n",
-  "readmeFilename": "README.md"
+  "devDependencies": {}
 }
