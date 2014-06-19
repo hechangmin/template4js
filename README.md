@@ -1,35 +1,50 @@
-***template4js 是什么？***
---------------
+#template4js#
 
-*这是一个性能高、使用简单、配置灵活的 javascript模板引擎!*
+The JavaScript template engine, support for running NodeJS and browser environment.
 
-----------------------------------------------------------------------
+##installation##
 
-高性能
---------------
+npm install template4js
 
-* 字符串+= 方式拼接
+##usage##
 
->大多数的模板引擎在构建过程中都选择了数组的push及join来完成字符串拼接，实际上这种处理仅在IE 6、7的环境下会有优势。后来的现代浏览器及V8脚本引擎都对字符串本身的 ‘+=’做了优化。而如今IE 6、7市场份额日渐变小，用+= 来拼接字符串的性价比已经超越了数组。
+```html
+<ul>
+<% for (var i = 0, l = list.length; i < l; i ++) { %>
+    <li><%=list[i].index%>user: <%=list[i].user%> | site:<%=list[i].site%></li>
+<% } %>
+</ul>
+```
+-----------------
+```js
+var template = require('template4js'),
+    http = require('http');
 
-* 避免了with的语法
+var data = {list : [{
+        index : 1,
+        user : 'baidu',
+        site : '<a href="http://www.baidu.com" target="_blank">http://www.baidu.com</a>'
+    },{
+        index : 2,
+        user : 'qq',
+        site : 'http://www.qq.com'
+    },{
+        index : 3,
+        user : 'ali',
+        site : "http://www.taobao.com"
+    }
+]};
 
->还有不少模板引擎使用with语法，这使得一切变得简单，但经测试 with在执行过程中，是低效的。
+var server = http.createServer(function(req, res){
+    var contentType = 'text/html;charset=utf-8';
+    res.setHeader("Content-Type", contentType);
+    res.end(template('./assets/demo.tpl', data));
+}).listen(80);
+```
+>Please read demo.html or node_demo.js.
 
-这也是 template4js 的性能高的一个原因。
+##License##
 
+Released under the MIT license
 
-使用简单
---------------
-
-* 语法是Javascript原生语法。对于Javascript编程者来说，不存在使用门槛。
-
-浏览器端使用范例，请参考:browser_demo.html
-
-nodejs服务端使用范例，请参考：node_demo.js
-
--------------------------------------------------------------------------
-
->如果有使用上的疑问，请参照demo.html。
-
-_*欢迎联系我 [hechangmin@gmail.com](mailto://hechangmin@gmail.com)*_
+_*[hechangmin@gmail.com](mailto://hechangmin@gmail.com)*_
