@@ -42,11 +42,9 @@ var server = http.createServer(function(req, res){
 }).listen(80);
 ```
 -----------------
-
-
-*<%=var%> : output variable
-*<%-var%> : output escaping after the variables
-*<% include('./static/template/header.tpl') %> : Nested template
+* <%=var%> : output variable
+* <%-var%> : output escaping after the variables
+* <% include('./static/template/header.tpl') %> : Nested template
 
 >Please read demo.html or node_demo.js.
 
