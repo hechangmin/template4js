@@ -10,12 +10,20 @@ var App ={
             html,
             fn;
 
-        // (1) 传入的是元素ID
-        html = template('tpl',data);
+        // (1) 传入的是dom ID
+        
+        html = template('tpl',data);    
+        
 
-        // (2) ID 和 数据 分开传
-        // fn = template('tpl');
-        // html = fn(data);
+        // (2) 传入的是模板字符串
+        var tpl = '\
+            <ul>\
+            <% for (var i = 0, l = list.length; i < l; i ++) { %>\
+                <li><%=list[i].index%> user : <%=list[i].user%> | site：<%=list[i].site%></li>\
+            <% } %>\
+            </ul>';
+
+        //html = template(tpl,data);    
 
         document.getElementById('content').innerHTML = html;
     },

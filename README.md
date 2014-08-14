@@ -46,6 +46,7 @@ var server = http.createServer(function(req, res){
 * <%-var%> : output escaping after the variables
 * <% include('./static/template/header.tpl') %> : Nested template
 
+>In the template, the variable, please are reflected in the data parameters.
 >Please read demo.html or node_demo.js.
 
 ##License##
