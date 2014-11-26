@@ -1,7 +1,7 @@
 {
   "name": "template4js",
-  "version": "2.3.6",
-  "description": "A JavaScript template engine support node.js and the brower.",
+  "version": "2.3.7",
+  "description": "A JavaScript template engine support node.js and the browser.",
   "homepage": "http://github.com/hechangmin/template4js",
   "main": "./lib/template",
   "keywords": [
